@@ -19,15 +19,15 @@ t0 = []
 t1 = []
 
 idx = 0
-theta = np.array([0,0])
-thetaN = np.array([1,1])
+theta = np.array([1,1])
+thetaN = np.array([0,0])
 fig = plt.figure()
 
 xx = np.arange(-1.5,1.5,0.01)
 yy = np.arange(-1.5,1.5,0.01)
 tgrid0, tgrid1 = np.meshgrid(xx,yy,sparse=True)
 z = sum([ (tgrid0*x[i][0]+tgrid1*x[i][1] - y[i])**2 for i in range(len(x)) ])/len(x)
-plt.contourf(xx, yy, z)
+plt.contour(xx, yy, z, levels = np.linspace(-5,5,75))
 plt.xlim(-1.5,1.5)
 plt.ylim(-1.5,1.5)
 
@@ -40,7 +40,7 @@ while sum(abs(thetaN - theta) )/sum(abs(thetaN)) >= EPSILON:
 	t1.append(theta[1])
 	idx += 1
 
-	plt.scatter(t0,t1,c='k',marker='_',linewidths=0.01)
+	plt.scatter(t0,t1,c='k',marker='o',s=10)
 	plt.xlabel('theta0')
 	plt.ylabel('theta1')
 	plt.show(block=False)
